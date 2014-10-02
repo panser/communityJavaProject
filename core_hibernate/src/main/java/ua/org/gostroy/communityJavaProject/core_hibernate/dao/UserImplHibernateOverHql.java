@@ -1,33 +1,34 @@
 package ua.org.gostroy.communityJavaProject.core_hibernate.dao;
 
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import ua.org.gostroy.communityJavaProject.core_entity.model.User;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
- * Created by Panov Sergey on 9/29/2014.
+ * Created by Panov Sergey on 10/2/2014.
  */
 //@Repository
-public class UserImplHibernate implements UserDao {
+public class UserImplHibernateOverHql implements UserDao {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     @Autowired
     @Qualifier("sessionFactory")
     private SessionFactory sessionFactory;
 
+    @SuppressWarnings("unchecked")
     @Override
     public User findOne(Long id) {
         LOG.trace(getClass() + " : findOne ... ");
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, id);
+        String qlString = "SELECT e FROM User e WHERE e.id = :id";
+        Query query = sessionFactory.getCurrentSession().createQuery(qlString);
+        query.setParameter("id", id);
+        User user =  (User)query.uniqueResult();
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
         }
@@ -35,11 +36,11 @@ public class UserImplHibernate implements UserDao {
         return user;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<User> findAll() {
         LOG.trace(getClass() + " : findAll ... ");
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
-        List<User> resulyList = criteria.list();
+        List<User> resulyList = sessionFactory.getCurrentSession().createQuery("from User").list();
         LOG.trace(getClass() + " : findAll. ");
         return resulyList;
     }

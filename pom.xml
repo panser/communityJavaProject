@@ -97,6 +97,16 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+                        <descriptors>
+                            <descriptor>assembly.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -116,6 +126,16 @@
     <properties>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <build.id>build_id</build.id>
+        <target.directory.name>directory</target.directory.name>
+        <target.directory>target-${target.directory.name}</target.directory>
+        <target.directory.project.artifactId>../${target.directory}/${project.artifactId}
+        </target.directory.project.artifactId>
+        <target.finalName>Build_${build.id}_${project.artifactId}</target.finalName>
+        <target.assembled.directory>
+            ../target-${target.directory.name}/src-${target.directory.name}/build-${build.id}
+        </target.assembled.directory>
 
         <communityJavaProject.core_entity.version>1.0-SNAPSHOT</communityJavaProject.core_entity.version>
         <communityJavaProject.core_jpa_hibernate.version>1.0-SNAPSHOT</communityJavaProject.core_jpa_hibernate.version>

@@ -24,7 +24,7 @@ public class AlertServiceTest {
     AlertService alertService;
 
     @Test
-    @Ignore
+//    @Ignore
     public void syncJmsTest(){
         LOG.trace(getClass() + ": syncJmsTest() ...");
         String sendMessage = "testJms";
@@ -33,4 +33,16 @@ public class AlertServiceTest {
         Assert.assertEquals(sendMessage, receiveMessage);
         LOG.trace(getClass() + ": syncJmsTest().");
     }
+
+    @Test
+//    @Ignore
+    public void asyncJmsTest(){
+        LOG.trace(getClass() + ": asyncJmsTest() ...");
+        String sendMessage = "testAJms";
+        alertService.sendAlert(sendMessage);
+        String receiveMessage = alertService.getAlert();
+        Assert.assertEquals(sendMessage, receiveMessage);
+        LOG.trace(getClass() + ": asyncJmsTest().");
+    }
+
 }

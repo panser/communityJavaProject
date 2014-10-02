@@ -9,6 +9,7 @@
     <context:component-scan base-package="ua.org.gostroy.communityJavaProject.test.jms_activemq"/>
 
     <import resource="classpath:/ua/org/gostroy/communityJavaProject/core_jpa_hibernate/applicationContext.xml"/>
-    <import resource="applicationContext.d/jms_activemq.xml"/>
+    <!--<import resource="applicationContext.d/jms_activemq.xml"/>-->
+    <import resource="applicationContext.d/springbyexample.xml"/>
 
 </beans>
