@@ -26,11 +26,7 @@ public class UserImplJpa implements UserDao {
     @Override
     public User findOne(Long id) {
         LOG.trace(getClass() + " : findOne ... ");
-//        User user = em.find(User.class, id);
-        String qlString = "SELECT e FROM User e WHERE e.id = ?1";
-        TypedQuery<User> query = em.createQuery(qlString, User.class);
-        query.setParameter(1, id);
-        User user =  query.getSingleResult();
+        User user = em.find(User.class, id);
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
         }
