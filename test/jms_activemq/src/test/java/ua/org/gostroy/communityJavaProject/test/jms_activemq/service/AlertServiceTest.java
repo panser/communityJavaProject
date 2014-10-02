@@ -30,7 +30,6 @@ public class AlertServiceTest {
         String sendMessage = "testJms";
         alertService.sendAlert(sendMessage);
         String receiveMessage = alertService.getAlert();
-//        String receiveMessage = "";
         Assert.assertEquals(sendMessage, receiveMessage);
         LOG.trace(getClass() + ": syncJmsTest().");
     }
