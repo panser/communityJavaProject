@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import java.util.List;
 
@@ -32,7 +32,9 @@ public class UserImplHibernateOverHql implements UserDao {
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
         }
-        LOG.trace(getClass() + " : findOne. Not found.");
+        else {
+            LOG.trace(getClass() + " : findOne. Not found.");
+        }
         return user;
     }
 

@@ -10,5 +10,6 @@
 
     <import resource="classpath:/ua/org/gostroy/communityJavaProject/core_entity/applicationContext.xml"/>
     <import resource="applicationContext.d/spring-data.xml"/>
+    <import resource="applicationContext.d/spring-data-auditing.xml"/>
 
 </beans>

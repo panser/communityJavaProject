@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 /**
  * Created by Panov Sergey on 10/1/2014.
@@ -24,7 +24,7 @@ public class AlertServiceTest {
     AlertService alertService;
 
     @Test
-//    @Ignore
+    @Ignore
     public void syncJmsTest(){
         LOG.trace(getClass() + ": syncJmsTest() ...");
         String sendMessage = "testJms";
@@ -35,7 +35,7 @@ public class AlertServiceTest {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void asyncJmsTest(){
         LOG.trace(getClass() + ": asyncJmsTest() ...");
         String sendMessage = "testAJms";

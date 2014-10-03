@@ -6,12 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 import ua.org.gostroy.communityJavaProject.core_spring_data.repository.UserRepository;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Panov Sergey on 9/29/2014.
@@ -47,7 +45,7 @@ public class UserServiceOverSpringData {
     @Transactional(rollbackFor = Exception.class)
     public User save(final User user) throws ConstraintViolationException {
         LOG.trace(getClass() + " : save ... ");
-        User userNew = userDAO.save(user);
+        User userNew = userDAO.saveAndFlush(user);
         LOG.trace(getClass() + " : save.");
         return userNew;
     }
@@ -55,7 +53,7 @@ public class UserServiceOverSpringData {
     @Transactional(rollbackFor = Exception.class)
     public User update(final User user) throws ConstraintViolationException {
         LOG.trace(getClass() + " : update ... ");
-        User userNew = userDAO.save(user);
+        User userNew = userDAO.saveAndFlush(user);
         LOG.trace(getClass() + " : update.");
         return userNew;
     }

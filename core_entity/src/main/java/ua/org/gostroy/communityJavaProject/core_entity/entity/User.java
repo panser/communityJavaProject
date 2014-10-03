@@ -1,4 +1,4 @@
-package ua.org.gostroy.communityJavaProject.core_entity.model;
+package ua.org.gostroy.communityJavaProject.core_entity.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

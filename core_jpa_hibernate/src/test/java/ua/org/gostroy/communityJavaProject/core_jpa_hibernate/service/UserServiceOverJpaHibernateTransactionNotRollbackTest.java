@@ -12,7 +12,7 @@ import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 /**
  * Created by Panov Sergey on 10/2/2014.
@@ -21,7 +21,7 @@ import ua.org.gostroy.communityJavaProject.core_entity.model.User;
 @ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_jpa_hibernate/applicationContext.xml"})
 @TransactionConfiguration(defaultRollback = false)
 @Transactional
-public class UserImplHibernateTransactionNotRollbackTest {
+public class UserServiceOverJpaHibernateTransactionNotRollbackTest {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
     User testUser;
 

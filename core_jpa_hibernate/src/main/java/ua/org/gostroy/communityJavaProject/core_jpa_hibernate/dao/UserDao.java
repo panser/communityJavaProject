@@ -1,9 +1,8 @@
 package ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao;
 
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Panov Sergey on 9/29/2014.

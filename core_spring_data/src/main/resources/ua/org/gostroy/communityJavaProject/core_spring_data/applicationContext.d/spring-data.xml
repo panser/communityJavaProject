@@ -6,16 +6,26 @@
 
     <bean id="myEntityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="ua.org.gostroy.communityJavaProject.core_entity.model"/>
+        <!--<property name="packagesToScan" value="ua.org.gostroy.communityJavaProject.core_entity.entity"/>-->
+        <property name="packagesToScan">
+            <list>
+                <value>ua.org.gostroy.communityJavaProject.core_entity.entity</value>
+                <value>ua.org.gostroy.communityJavaProject.core_spring_data.entity</value>
+            </list>
+        </property>
+        <property name="mappingResources" value="ua/org/gostroy/communityJavaProject/core_spring_data/orm.xml"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">${db.hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">${db.hibernate.show_sql}</prop>
-                <prop key="hibernate.format_sql">${db.hibernate.format_sql}</prop>
-                <prop key="hibernate.hbm2ddl.auto">${db.hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="jadira.usertype.autoRegisterUserTypes">true</prop>
+                <prop key="jadira.usertype.databaseZone">${jadira.usertype.databaseZone}</prop>
+                <prop key="jadira.usertype.javaZone">${jadira.usertype.javaZone}</prop>
             </props>
         </property>
     </bean>

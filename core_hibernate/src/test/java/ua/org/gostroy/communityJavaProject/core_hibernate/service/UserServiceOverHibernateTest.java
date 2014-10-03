@@ -1,4 +1,4 @@
-package ua.org.gostroy.communityJavaProject.core_jdbc.service;
+package ua.org.gostroy.communityJavaProject.core_hibernate.service;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -7,38 +7,32 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Panov Sergey on 9/29/2014.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_jdbc/applicationContext.xml"})
-public class UserImplJdbcTest {
+@ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_hibernate/applicationContext.xml"})
+public class UserServiceOverHibernateTest {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
     User testUser;
 
     @Autowired
-    UserServiceOverJdbc userService;
+    UserServiceOverHibernate userService;
 
     @Before
     public void setup(){
-        LOG.trace(getClass() + ": setup() ...");
         testUser = new User();
-        testUser.setLogin("core_jdbc:testSetup");
+        testUser.setLogin("core_hibernate:testSetup");
         testUser = userService.save(testUser);
-        LOG.trace(getClass() + ": setup().");
     }
 
     @After
     public void destroy(){
-        LOG.trace(getClass() + ": destroy() ...");
-        LOG.trace(getClass() + ": destroy(), testUser = " + testUser);
         userService.delete(testUser);
-        LOG.trace(getClass() + ": destroy().");
     }
 
     @Test
@@ -49,7 +43,7 @@ public class UserImplJdbcTest {
 
     @Test
     public void update(){
-        testUser.setLogin("core_jdbc:testUpdate");
+        testUser.setLogin("core_hibernate:testUpdate");
         User updateUser = userService.update(testUser);
         LOG.trace(getClass() + ": update(), testUser = " + testUser);
         LOG.trace(getClass() + ": update(), updateUser = " + updateUser);
@@ -58,13 +52,11 @@ public class UserImplJdbcTest {
 
     @Test
     public void save(){
-        LOG.trace(getClass() + ": save() ...");
-        testUser.setLogin("core_jdbc:testSave");
+        testUser.setLogin("core_hibernate:testSave");
         User saveUser = userService.save(testUser);
         LOG.trace(getClass() + ": save(), testUser = " + testUser);
         LOG.trace(getClass() + ": save(), saveUser = " + saveUser);
         Assert.assertEquals(testUser.getId(), saveUser.getId());
-        LOG.trace(getClass() + ": save().");
     }
 
 }

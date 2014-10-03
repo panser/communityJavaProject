@@ -6,12 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 import ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserDao;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Panov Sergey on 9/29/2014.
@@ -45,6 +43,7 @@ public class UserServiceOverJpaHibernate {
     }
 
     @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public User save(final User user) throws ConstraintViolationException {
         LOG.trace(getClass() + " : save ... ");
         User newUser = userDAO.save(user);
@@ -53,6 +52,7 @@ public class UserServiceOverJpaHibernate {
     }
 
     @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public User update(final User user) throws ConstraintViolationException {
         LOG.trace(getClass() + " : update ... ");
         User newUser = userDAO.update(user);
@@ -61,6 +61,7 @@ public class UserServiceOverJpaHibernate {
     }
 
     @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void delete(final User user) throws ConstraintViolationException {
         LOG.trace(getClass() + " : delete ... ");
         userDAO.delete(user);

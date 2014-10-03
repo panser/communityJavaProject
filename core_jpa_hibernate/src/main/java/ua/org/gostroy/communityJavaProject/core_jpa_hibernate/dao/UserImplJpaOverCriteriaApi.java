@@ -1,15 +1,11 @@
 package ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao;
 
-import org.hibernate.criterion.CriteriaQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -31,7 +27,9 @@ public class UserImplJpaOverCriteriaApi implements UserDao {
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
         }
-        LOG.trace(getClass() + " : findOne. Not found.");
+        else {
+            LOG.trace(getClass() + " : findOne. Not found.");
+        }
         return user;
     }
 

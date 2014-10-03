@@ -2,23 +2,15 @@ package ua.org.gostroy.communityJavaProject.core_jdbc.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
-import ua.org.gostroy.communityJavaProject.core_entity.model.User;
+import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import javax.sql.DataSource;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Panov Sergey on 9/29/2014.
@@ -46,9 +38,10 @@ public class UserImplJdbc extends NamedParameterJdbcDaoSupport implements UserDa
         User user = getNamedParameterJdbcTemplate().queryForObject(SQL_SELECT_USER_BY_ID, parameters, BeanPropertyRowMapper.newInstance(User.class));
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
-            LOG.trace(getClass() + " : findOne. user = " + user);
         }
-        LOG.trace(getClass() + " : findOne. Not found.");
+        else {
+            LOG.trace(getClass() + " : findOne. Not found.");
+        }
         return user;
     }
 
