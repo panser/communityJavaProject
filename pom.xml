@@ -10,14 +10,14 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>core_entity</module>
-        <module>core_spring_data</module>
-        <module>core_hibernate</module>
-        <module>core_jpa_hibernate</module>
-        <module>core_jdbc</module>
-        <module>core_mybatis</module>
+        <module>persistence/core_entity</module>
+        <module>persistence/core_spring_data</module>
+        <module>persistence/core_hibernate</module>
+        <module>persistence/core_jpa_hibernate</module>
+        <module>persistence/core_jdbc</module>
+        <module>persistence/core_mybatis</module>
         <module>test/jms_activemq</module>
-        <module>test/jsp_simple</module>
+        <module>web/jsp_simple</module>
     </modules>
 
     <build>
