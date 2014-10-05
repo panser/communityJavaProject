@@ -9,7 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Panov Sergey on 10/1/2014.
@@ -18,10 +19,11 @@ import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 @ContextConfiguration("classpath:/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.xml")
 public class AlertServiceTest {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
-    User testUser;
 
     @Autowired
     AlertService alertService;
+    @Autowired
+    private AtomicInteger counter = null;
 
     @Test
     @Ignore
@@ -36,12 +38,17 @@ public class AlertServiceTest {
 
     @Test
     @Ignore
-    public void asyncJmsTest(){
+    public void asyncJmsTest() throws Exception{
         LOG.trace(getClass() + ": asyncJmsTest() ...");
         String sendMessage = "testAJms";
-        alertService.sendAlert(sendMessage);
-        String receiveMessage = alertService.getAlert();
-        Assert.assertEquals(sendMessage, receiveMessage);
+        for (int i = 0; i< 100; i++){
+            alertService.sendAlert(sendMessage);
+        }
+
+        // give listener a chance to process messages
+        Thread.sleep(2 * 1000);
+
+        LOG.trace(getClass() + ": asyncJmsTest(). Receive messages count = " + counter);
         LOG.trace(getClass() + ": asyncJmsTest().");
     }
 

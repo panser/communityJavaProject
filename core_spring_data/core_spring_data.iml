@@ -16,7 +16,6 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="myEntityManager" value="dataSource" />
-          <factory-entry name="persistenceUnit" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/ua/org/gostroy/communityJavaProject/core_spring_data/service/persistence.xml" />
       </configuration>

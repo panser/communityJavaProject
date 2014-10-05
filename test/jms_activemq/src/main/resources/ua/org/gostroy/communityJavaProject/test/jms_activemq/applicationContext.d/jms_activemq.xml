@@ -39,7 +39,7 @@
 
 
     <!-- this is the Message Driven POJO (MDP) -->
-    <bean id="userAlertHandler" class="ua.org.gostroy.communityJavaProject.test.jms_activemq.alerts.UserAlertHandler"/>
+    <bean id="userAlertHandler2" class="ua.org.gostroy.communityJavaProject.test.jms_activemq.alerts.UserAlertHandler"/>
     <jms:listener-container connection-factory="connectionFactory">
         <jms:listener destination="communityJavaProject.jms_activemq.queue"
                       ref="userAlertHandler" method="processAlert" />
