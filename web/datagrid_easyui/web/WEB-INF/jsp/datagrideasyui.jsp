@@ -53,51 +53,45 @@
 </script>
 
 
+<form:form method="post" commandName="user">
+    <table cellpadding="3" cellspacing="0" border="0">
+        <tr>
+            <td>
+                Login:
+            </td>
+            <td>
+                <form:input id="filterValue" name="filterValue" path="login"/>
+            </td>
+            <td>
+                <form:button id="search" name="search">
+                    Search
+                </form:button>
+            </td>
+        </tr>
+    </table>
 
-<table cellpadding="3" cellspacing="0" border="0">
-    <tr>
-        <td>
-            User:
-        </td>
-        <td>
-            <form:input id="filterValue" name="filterValue" path="user"/>
-        </td>
-        <td>
-<%--
-            <form:button id="search" name="search">
-                Search
-            </form:button>
---%>
-        </td>
-    </tr>
-</table>
+    <form:button name="addUser">
+        Add
+    </form:button>
 
-<%--
-<form:button name="addNetwork">
-    Add
-</form:button>
---%>
+    <form:button name="editUser">
+        Edit
+    </form:button>
 
-<%--
-<form:button name="editNetwork">
-    Edit
-</form:button>
---%>
-
-<table id="dg" class="easyui-datagrid" style="width:auto"
-       url="/datagrideasyui"
-       toolbar="#toolbar" pagination="true"
-       rownumbers="true" fitColumns="true" singleSelect="true">
-    <thead>
-    <tr>
-        <th field="login" width="50">Login</th>
-        <th field="email" width="50">Email</th>
-        <th field="password" width="50">Password</th>
-        <th data-options="field:'edit',formatter:editAction"></th>
-        <th data-options="field:'delete',formatter:deleteAction"></th>
-    </tr>
-    </thead>
-</table>
-
+    <table id="dg" class="easyui-datagrid" style="width:auto"
+           url="/datagrideasyui"
+           toolbar="#toolbar" pagination="true"
+           rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+        <tr>
+            <th field="login" width="50">Login</th>
+            <th field="email" width="50">Email</th>
+            <th field="password" width="50">Password</th>
+            <th data-options="field:'edit',formatter:editAction"></th>
+            <th data-options="field:'delete',formatter:deleteAction"></th>
+        </tr>
+        </thead>
+    </table>
+</form:form>
 </body>
 </html>

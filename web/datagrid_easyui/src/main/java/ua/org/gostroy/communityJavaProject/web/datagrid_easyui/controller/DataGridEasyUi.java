@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
@@ -38,10 +39,20 @@ public class DataGridEasyUi {
         System.out.println(getClass() + "before destroy method invoked");
     }
 
+    @ModelAttribute("user")
+    public User getUser() {
+        return new User();
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String test(ModelMap model) {
+    public String test() {
         LOG.trace(getClass() + ": test() ...");
-        model.addAttribute("user", new User());
+        return DATAGRID_EASYUI_PAGE;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String test2() {
+        LOG.trace(getClass() + ": test2() ...");
         return DATAGRID_EASYUI_PAGE;
     }
 }
