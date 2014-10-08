@@ -10,7 +10,7 @@
         </encoder>
     </appender>
 
-    <property name="MODULE_NAME" value="core_mybatis" />
+    <property name="MODULE_NAME" value="datagrid_easyui" />
     <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>../var/log/${MODULE_NAME}.log</file>
@@ -31,7 +31,7 @@
 
     </appender>
 
-    <logger name="ua.org.gostroy.communityJavaProject.core_mybatis" level="trace"/>
+    <logger name="ua.org.gostroy.communityJavaProject.web.datagrid_easyui" level="trace"/>
 
     <!--<logger name="org.springframework" level="trace" />-->
     <!--<logger name="org.springframework.core" level="info" />-->

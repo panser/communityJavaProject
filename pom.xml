@@ -18,10 +18,13 @@
         <module>persistence/core_mybatis</module>
         <module>test/jms_activemq</module>
         <module>web/jsp_simple</module>
+        <module>camel/exmpl1</module>
+        <module>web/datagrid_easyui</module>
     </modules>
 
     <build>
         <finalName>${project.name}</finalName>
+        <defaultGoal>install</defaultGoal>
 
         <resources>
             <resource>
@@ -44,6 +47,7 @@
                         <compilerVersion>1.7</compilerVersion>
                         <encoding>utf-8</encoding>
                         <useIncrementalCompilation>false</useIncrementalCompilation>
+                        <showDeprecation>true</showDeprecation>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -126,6 +130,7 @@
     <properties>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <build.id>build_id</build.id>
         <target.directory.name>directory</target.directory.name>
@@ -152,6 +157,7 @@
         <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
         <mybatis.version>3.2.7</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
+        <camel-version>2.14.0</camel-version>
     </properties>
 
     <dependencyManagement>
@@ -319,6 +325,16 @@
                 <artifactId>spring-jms</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
             <!-- Logging -->
             <dependency>
@@ -367,11 +383,33 @@
                 <scope>test</scope>
             </dependency>
 
-            <!--Other-->
+            <!--Camel-->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jms</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.activemq</groupId>
-                <artifactId>activemq-spring</artifactId>
+                <artifactId>activemq-camel</artifactId>
                 <version>5.10.0</version>
+            </dependency>
+
+            <!--Other-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.4</version>
             </dependency>
 
             <dependency>
@@ -453,6 +491,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+
+        <!--Other-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
     </dependencies>
 
 
