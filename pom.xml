@@ -20,6 +20,7 @@
         <module>web/jsp_simple</module>
         <module>camel/exmpl1</module>
         <module>web/datagrid_easyui</module>
+        <module>logging</module>
     </modules>
 
     <build>

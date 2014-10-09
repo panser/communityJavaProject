@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 import ua.org.gostroy.communityJavaProject.core_jpa_hibernate.service.UserServiceOverJpaHibernate;
 import ua.org.gostroy.communityJavaProject.web.datagrid_easyui.json.JSONResponseBuilder;
@@ -15,6 +16,7 @@ import ua.org.gostroy.communityJavaProject.web.datagrid_easyui.json.UserDataGrid
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.List;
 
 /**
  * Created by Panov Sergey on 10/7/2014.
@@ -44,15 +46,16 @@ public class DataGridEasyUi {
         return new User();
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String test() {
-        LOG.trace(getClass() + ": test() ...");
+    @RequestMapping(method = RequestMethod.GET)
+    public String index() {
+        LOG.trace(getClass() + ": index() ...");
         return DATAGRID_EASYUI_PAGE;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String test2() {
-        LOG.trace(getClass() + ": test2() ...");
-        return DATAGRID_EASYUI_PAGE;
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST)
+    public List<User> search() {
+        LOG.trace(getClass() + ": search() ...");
+        return userServiceOverJpaHibernate.findAll();
     }
 }
