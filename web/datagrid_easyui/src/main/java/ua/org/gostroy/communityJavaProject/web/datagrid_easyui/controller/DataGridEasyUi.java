@@ -32,6 +32,7 @@ public class DataGridEasyUi {
 
     private JSONResponseBuilder jsonResponseBuilder = new UserDataGridJSONResponseBuilder();
 
+/*
     @PostConstruct
     protected void beforeConstruct(){
         System.out.println(getClass() + " :post construct method invoked");
@@ -40,6 +41,7 @@ public class DataGridEasyUi {
     protected void beforeDestroy() {
         System.out.println(getClass() + "before destroy method invoked");
     }
+*/
 
     @ModelAttribute("user")
     public User getUser() {
