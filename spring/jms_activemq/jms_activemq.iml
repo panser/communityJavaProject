@@ -4,9 +4,9 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.d/jms_activemq.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/activemq.xml</file>
+          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.d/jms_activemq.xml</file>
+          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/activemq.xml</file>
         </fileset>
       </configuration>
     </facet>
