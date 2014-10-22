@@ -8,6 +8,42 @@
     <artifactId>main</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <profiles>
+        <profile>
+            <id>db_localhost_mysql</id>
+            <properties>
+                <type>db_localhost_mysql</type>
+            </properties>
+        </profile>
+        <profile>
+            <id>db_gostroy_mysql</id>
+            <properties>
+                <type>db_gostroy_mysql</type>
+            </properties>
+        </profile>
+        <profile>
+            <id>db_gostroy_oracle</id>
+            <properties>
+                <type>db_gostroy_oracle</type>
+            </properties>
+        </profile>
+        <profile>
+            <id>db_localhost_hsqldb</id>
+            <properties>
+                <type>db_localhost_hsqldb</type>
+            </properties>
+        </profile>
+        <profile>
+            <id>db_localhost_h2</id>
+            <properties>
+                <type>db_localhost_h2</type>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <packaging>pom</packaging>
     <modules>
         <module>persistence</module>

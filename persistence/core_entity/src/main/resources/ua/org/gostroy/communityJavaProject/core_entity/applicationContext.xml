@@ -14,6 +14,8 @@
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_hsqldb.properties" />-->
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_h2.properties" />-->
 
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/${type}.properties" />-->
+
     <import resource="applicationContext.d/dataSource.xml"/>
 
 </beans>
