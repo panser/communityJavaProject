@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                 http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="db_localhost_hsqldb">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>ua.org.gostroy.communityJavaProject.core_entity.entity.User</class>
+        <!--<mapping-file>orm.xml</mapping-file>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>-->
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
+            <property name="jadira.usertype.autoRegisterUserTypes" value="true"/>
+            <property name="jadira.usertype.databaseZone" value="jvm"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

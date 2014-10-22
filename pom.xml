@@ -14,7 +14,7 @@
         <module>logging</module>
         <module>web</module>
         <module>spring</module>
-        <module>spring-mvc</module>
+        <module>springmvc</module>
         <module>camel</module>
         <module>test</module>
     </modules>
