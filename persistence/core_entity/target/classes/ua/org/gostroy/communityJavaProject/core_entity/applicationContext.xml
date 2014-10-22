@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="ua.org.gostroy.communityJavaProject.core_entity"/>
+
+    <context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_mysql.properties" />
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_mysql.properties" />-->
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_oracle.properties" />-->
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_hsqldb.properties" />-->
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_h2.properties" />-->
+
+    <import resource="applicationContext.d/dataSource.xml"/>
+
+</beans>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+    <!--  Embedded ActiveMQ Broker -->
+    <amq:broker id="broker" useJmx="false" persistent="false">
+        <amq:transportConnectors>
+            <amq:transportConnector uri="tcp://localhost:0" />
+        </amq:transportConnectors>
+    </amq:broker>
+    <!-- JMS ConnectionFactory to use, configuring the embedded broker using XML -->
+    <amq:connectionFactory id="jmsFactory" brokerURL="vm://localhost" />
+
+<!--
+    <bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+        &lt;!&ndash;<property name="config" value="classpath:org/apache/activemq/xbean/activemq.xml" />&ndash;&gt;
+        <property name="start" value="true" />
+    </bean>
+
+    <bean id="jmsFactory" class="org.apache.activemq.ActiveMQConnectionFactory" depends-on="broker">
+        <property name="brokerURL" value="vm://localhost"/>
+    </bean>
+-->
+
+    <!--  ActiveMQ Destination  -->
+    <amq:queue id="destination" physicalName="communityJavaProject.jms_activemq.queue" />
+
+
+
+    <!-- JMS Producer Configuration -->
+    <bean id="jmsProducerConnectionFactory"
+          class="org.springframework.jms.connection.SingleConnectionFactory"
+          depends-on="broker"
+          p:targetConnectionFactory-ref="jmsFactory" />
+
+    <bean id="jmsProducerTemplate" class="org.springframework.jms.core.JmsTemplate"
+          p:connectionFactory-ref="jmsProducerConnectionFactory"
+          p:defaultDestination-ref="destination" />
+
+
+
+    <!-- JMS Consumer Configuration -->
+    <bean id="jmsConsumerConnectionFactory"
+          class="org.springframework.jms.connection.SingleConnectionFactory"
+          depends-on="broker"
+          p:targetConnectionFactory-ref="jmsFactory" />
+
+    <bean id="userAlertHandler" class="ua.org.gostroy.communityJavaProject.test.jms_activemq.alerts.UserAlertHandler"/>
+    <jms:listener-container container-type="default"
+                            connection-factory="jmsConsumerConnectionFactory"
+                            acknowledge="auto">
+        <jms:listener destination="communityJavaProject.jms_activemq.queue" ref="userAlertHandler" />
+    </jms:listener-container>
+
+    <!-- Counter for consumer to increment and test to verify count -->
+    <bean id="counter" class="java.util.concurrent.atomic.AtomicInteger" />
+
+</beans>
