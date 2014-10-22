@@ -8,9 +8,9 @@
 
     <context:component-scan base-package="ua.org.gostroy.communityJavaProject.core_entity"/>
 
-    <context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_mysql.properties" />
+    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_mysql.properties" />-->
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_mysql.properties" />-->
-    <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_oracle.properties" />-->
+    <context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_oracle.properties" />
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_hsqldb.properties" />-->
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_localhost_h2.properties" />-->
 

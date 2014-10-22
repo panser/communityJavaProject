@@ -10,7 +10,12 @@ import java.io.Serializable;
 @Table(name = "core_users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    for MySQL and other
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    for Oracle
+//    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS$SEQ", schema = "BEANS_CONFIG", allocationSize=1)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String login;
     private String email;
