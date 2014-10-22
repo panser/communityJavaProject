@@ -1,5 +1,6 @@
 package ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao;
 
+
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import java.util.List;
