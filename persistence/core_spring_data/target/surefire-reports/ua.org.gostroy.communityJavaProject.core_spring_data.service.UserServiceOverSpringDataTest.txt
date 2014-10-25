@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ua.org.gostroy.communityJavaProject.core_spring_data.service.UserServiceOverSpringDataTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.352 sec

@@ -9,13 +9,19 @@ import java.io.Serializable;
 @Entity
 @Table(name = "core_users")
 public class User implements Serializable {
-    @Id
-//    for MySQL and other
+//    for MySQL and other (except Oracle)
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    for Oracle
+
+//    for Oracle and H2
+//    and for Mysql(only JDBC, MyBatis). maybe, MySQL use GenerationType.IDENTITY and doesn't use GenerationType.SEQUENCE
 //    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS$SEQ", schema = "BEANS_CONFIG", allocationSize=1)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+//    for ALL
+//    @TableGenerator(name="TABLE_GEN", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME", valueColumnName="SEQ_COUNT", pkColumnValue="core_users_seq")
+//    @GeneratedValue(strategy=GenerationType.TABLE, generator="TABLE_GEN")
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Long id;
     private String login;
     private String email;

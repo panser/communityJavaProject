@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <bean id="txManagerJDBC" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     	  <property name="dataSource" ref="dataSource" />
@@ -11,8 +12,11 @@
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-    <bean id="userImplJdbc" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbc">
-        <constructor-arg index="0" ref="dataSource"/>
-    </bean>
+    <bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequenceAndTrigger"/>
+
+    <!-- As an alternative, for embedded databases see <jdbc:embedded-database/>. -->
+    <!--<jdbc:initialize-database data-source="dataSource">-->
+        <!--<jdbc:script location="${jdbc.initLocation}"/>-->
+    <!--</jdbc:initialize-database>-->
 
 </beans>

@@ -1,3 +1,0 @@
-<bean id="ExcelRevenueSummary"
-      class="ua.org.gostroy.communityJavaProject.web.datagrid_easyui.controller.excel.ExcelBuilder">
-</bean>

@@ -19,6 +19,35 @@
             <groupId>ua.org.gostroy.communityJavaProject</groupId>
             <artifactId>core_entity</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>orai18n</artifactId>
+        </dependency>
+
+        <!--
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc14</artifactId>
+                    </dependency>
+        -->
+        <!--
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc14</artifactId>
+                    </dependency>
+        -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+        </dependency>
+<!--
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+        </dependency>
+-->
+
     </dependencies>
 
 </project>

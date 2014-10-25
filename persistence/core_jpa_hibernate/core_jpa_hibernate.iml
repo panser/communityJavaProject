@@ -7,6 +7,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="db_localhost_hsqldb" />
+          <factory-entry name="myEntityManager" value="dataSource" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/core_jpa_hibernate/persistence.xml" />
       </configuration>
