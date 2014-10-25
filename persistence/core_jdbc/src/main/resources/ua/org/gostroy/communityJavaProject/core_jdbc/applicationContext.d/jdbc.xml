@@ -16,8 +16,8 @@
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequenceAndTrigger"/>-->
 
     <!-- As an alternative, for embedded databases see <jdbc:embedded-database/>. -->
-    <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="${jdbc.initLocation}"/>
-    </jdbc:initialize-database>
+    <!--<jdbc:initialize-database data-source="dataSource">-->
+        <!--<jdbc:script location="${jdbc.initLocation}"/>-->
+    <!--</jdbc:initialize-database>-->
 
 </beans>
