@@ -13,9 +13,8 @@ public class User implements Serializable {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 //    for Oracle and H2
-//    and for Mysql(only JDBC, MyBatis). maybe, MySQL use GenerationType.IDENTITY and doesn't use GenerationType.SEQUENCE
-//    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS$SEQ", schema = "BEANS_CONFIG", allocationSize=1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
+    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS_SEQ", schema = "BEANS_CONFIG", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
 
 //    for ALL
 //    @TableGenerator(name="TABLE_GEN", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME", valueColumnName="SEQ_COUNT", pkColumnValue="core_users_seq")
