@@ -33,10 +33,11 @@ TABLESPACE "USERS";
 DROP SEQUENCE "BEANS_CONFIG".CORE_USERS_SEQ;
 CREATE SEQUENCE  "BEANS_CONFIG"."CORE_USERS_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE;
 
-create trigger CORE_USERS_IDENTITY
-BEFORE
-insert on CORE_USERS
-for each row
-  begin
-    :new.ID := CORE_USERS_SEQ.nextval;
-  end;
+-- -- only if you will use trigger in BD
+-- create trigger CORE_USERS_IDENTITY
+-- BEFORE
+-- insert on CORE_USERS
+-- for each row
+--   begin
+--     :new.ID := CORE_USERS_SEQ.nextval;
+--   end;

@@ -4,40 +4,31 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.RowId;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Created by Panov Sergey on 9/29/2014.
  */
-public class UserImplJdbc extends NamedParameterJdbcDaoSupport implements UserDao {
+public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport implements UserDao {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private String SQL_SELECT_USER_BY_ID = "SELECT * FROM core_users where id = ?";
     private String SQL_SELECT_USERS = "SELECT * FROM core_users";
-//    private String SQL_INSERT_USER = "INSERT INTO core_users (id, email, login, password) values(CORE_USERS$SEQ.NEXTVAL, ?, ?, ?)";
     private String SQL_INSERT_USER = "INSERT INTO core_users (id, email, login, password) values(CORE_USERS_SEQ.NEXTVAL, :email, :login, :password)";
-//    private String SQL_INSERT_USER = "INSERT INTO core_users (email, login, password) values(:email, :login, :password)";
     private String SQL_UPDATE_USER = "UPDATE core_users SET email = :email, login = :login, password = :password WHERE id = :id";
     private String SQL_DELETE_USER = "DELETE FROM core_users WHERE id = :id";
 
     @Autowired
-    public UserImplJdbc(DataSource dataSource) {
+    public UserImplJdbcOverSequence(DataSource dataSource) {
         setDataSource(dataSource);
     }
 
@@ -73,20 +64,6 @@ public class UserImplJdbc extends NamedParameterJdbcDaoSupport implements UserDa
         KeyHolder keyHolder = new GeneratedKeyHolder();
 //        User newUser = new User(user);
         if(user.getId() == null) {
-/*
-            getJdbcTemplate().update(
-                    new PreparedStatementCreator() {
-                        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                            PreparedStatement ps = connection.prepareStatement(SQL_INSERT_USER, new String[]{"id"});
-
-                            ps.setString(1, user.getEmail());
-                            ps.setString(2, user.getLogin());
-                            ps.setString(3, user.getPassword());
-                            return ps;
-                        }
-                    },
-                    keyHolder);
-*/
             getNamedParameterJdbcTemplate().update(SQL_INSERT_USER, params, keyHolder, new String[]{"Id"});
             user.setId(keyHolder.getKey().longValue());
         }
