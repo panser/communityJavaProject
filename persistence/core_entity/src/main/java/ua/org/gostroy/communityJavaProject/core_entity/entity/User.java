@@ -7,7 +7,9 @@ import java.io.Serializable;
  * Created by Panov Sergey on 9/29/2014.
  */
 @Entity
-@Table(name = "core_users")
+@Table(name = "core_users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"login", "email"})
+})
 public class User implements Serializable {
 //    for MySQL and other (except Oracle)
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +25,9 @@ public class User implements Serializable {
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
+    @Column(unique = true)
     private String login;
+    @Column(unique = true)
     private String email;
     private String password;
 
