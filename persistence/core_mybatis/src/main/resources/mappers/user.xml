@@ -12,16 +12,7 @@
     </resultMap>
 
     <!-- ************** CREATE ************** -->
-<!--
-    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        INSERT
-        INTO core_users
-        SET
-        login = #{login},
-        email = #{email},
-        password = #{password}
-    </insert>
--->
+    <!--<insert id="save" parameterType="User" keyProperty="id">-->
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT
         INTO core_users (login, email, password)

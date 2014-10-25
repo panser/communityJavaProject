@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserDao {
     User findOne(@Param("id") Long id);
     List<User> findAll();
+    //TODO: now work only for MySQL, need fix
     Long save(User user);
     Long update(User user);
     void delete(User user);
