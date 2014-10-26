@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
@@ -18,8 +15,9 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 9/29/2014.
  */
-public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport implements UserDao {
+public class UserImplJdbcOverSequence implements UserDao {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private String SQL_SELECT_USER_BY_ID = "SELECT * FROM core_users where id = ?";
     private String SQL_SELECT_USERS = "SELECT * FROM core_users";
@@ -29,7 +27,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
 
     @Autowired
     public UserImplJdbcOverSequence(DataSource dataSource) {
-        setDataSource(dataSource);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     @Override
@@ -38,7 +36,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
         LOG.trace(getClass() + " : findOne ... id = " + id);
         SqlParameterSource params = new MapSqlParameterSource()
             .addValue("id", id);
-        User user = getNamedParameterJdbcTemplate().queryForObject(SQL_SELECT_USER_BY_ID, params, BeanPropertyRowMapper.newInstance(User.class));
+        User user = namedParameterJdbcTemplate.queryForObject(SQL_SELECT_USER_BY_ID, params, BeanPropertyRowMapper.newInstance(User.class));
         if (user != null) {
             LOG.trace(getClass() + " : findOne. ");
         }
@@ -51,7 +49,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
     @Override
     public List<User> findAll() {
         LOG.trace(getClass() + " : findAll ... ");
-        List<User> users = getNamedParameterJdbcTemplate().query(SQL_SELECT_USERS, BeanPropertyRowMapper.newInstance(User.class));
+        List<User> users = namedParameterJdbcTemplate.query(SQL_SELECT_USERS, BeanPropertyRowMapper.newInstance(User.class));
         LOG.trace(getClass() + " : findAll. ");
         return users;
     }
@@ -64,7 +62,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
         KeyHolder keyHolder = new GeneratedKeyHolder();
 //        User newUser = new User(user);
         if(user.getId() == null) {
-            getNamedParameterJdbcTemplate().update(SQL_INSERT_USER, params, keyHolder, new String[]{"Id"});
+            namedParameterJdbcTemplate.update(SQL_INSERT_USER, params, keyHolder, new String[]{"Id"});
             user.setId(keyHolder.getKey().longValue());
         }
         LOG.trace(getClass() + " : save. user = " + user);
@@ -77,7 +75,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
         LOG.trace(getClass() + " : update ... ");
         LOG.trace(getClass() + " : update... user = " + user);
         SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-        getNamedParameterJdbcTemplate().update(SQL_UPDATE_USER, params);
+        namedParameterJdbcTemplate.update(SQL_UPDATE_USER, params);
         LOG.trace(getClass() + " : update. ");
         LOG.trace(getClass() + " : update. user = " + user);
         return user;
@@ -90,7 +88,7 @@ public class UserImplJdbcOverSequence extends NamedParameterJdbcDaoSupport imple
         SqlParameterSource params = new BeanPropertySqlParameterSource(user);
 //        SqlParameterSource params = new MapSqlParameterSource()
 //            .addValue("id", user.getId());
-        getNamedParameterJdbcTemplate().update(SQL_DELETE_USER, params);
+        namedParameterJdbcTemplate.update(SQL_DELETE_USER, params);
         LOG.trace(getClass() + " : delete. ");
     }
 }
