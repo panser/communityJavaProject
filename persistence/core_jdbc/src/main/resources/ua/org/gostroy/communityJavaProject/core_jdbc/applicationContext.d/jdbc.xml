@@ -12,8 +12,12 @@
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+    <!--UserImplSimpleJdbcOverSequence   -  NOT WORK (can work only with trigger in OracleBD or with MySQL GenerationType.IDENTITY)-->
+    <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplSimpleJdbcOverSequence"/>-->
     <bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequence"/>
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequenceAndTrigger"/>-->
+
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallImplWithSimpleJdbcCall"/>
 
     <!-- As an alternative, for embedded databases see <jdbc:embedded-database/>. -->
     <!--<jdbc:initialize-database data-source="dataSource">-->
