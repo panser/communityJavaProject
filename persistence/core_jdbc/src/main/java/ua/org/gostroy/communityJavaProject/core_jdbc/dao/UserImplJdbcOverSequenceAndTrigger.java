@@ -27,7 +27,7 @@ public class UserImplJdbcOverSequenceAndTrigger implements UserDao {
     private String SQL_DELETE_USER = "DELETE FROM core_users WHERE id = :id";
 
     @Autowired
-    public UserImplJdbcOverSequenceAndTrigger(DataSource dataSource) {
+    public void setDataSource(DataSource dataSource) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
