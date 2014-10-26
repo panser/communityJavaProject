@@ -24,8 +24,14 @@ public class UserServiceOverJdbcCallTest {
     UserServiceOverJdbcCall userService;
 
     @Test
-    public void findOne(){
-        User user = userService.findById(2L);
-        Assert.assertEquals(user.getLogin(), "2");
+    public void procSimple(){
+        User user = userService.procSimple(1L);
+        Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void funcSimple(){
+        String result = userService.funcSimple(1L);
+        Assert.assertNotNull(result);
     }
 }

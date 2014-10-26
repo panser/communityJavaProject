@@ -21,14 +21,21 @@ public class UserServiceOverJdbcCall {
     UserOverCallDao userDAO;
 
     @Transactional(readOnly = false)
-    public User findById(final Long id) {
-        LOG.trace(getClass() + " : findUserById ... ");
-        User user = userDAO.findOne(id);
+    public User procSimple(Long id) {
+        LOG.trace(getClass() + " : procSimple ... ");
+        User user = userDAO.procSimple(id);
         if (user != null) {
-            LOG.trace(getClass() + " : findUserById. ");
+            LOG.trace(getClass() + " : procSimple. ");
             return user;
         }
-        LOG.trace(getClass() + " : findUserById. Not found.");
+        LOG.trace(getClass() + " : procSimple. Not found.");
         return null;
+    }
+
+    public String funcSimple(Long id) {
+        LOG.trace(getClass() + " : funcSimple ... ");
+        String result = userDAO.funcSimple(id);
+        LOG.trace(getClass() + " : funcSimple. ");
+        return result;
     }
 }

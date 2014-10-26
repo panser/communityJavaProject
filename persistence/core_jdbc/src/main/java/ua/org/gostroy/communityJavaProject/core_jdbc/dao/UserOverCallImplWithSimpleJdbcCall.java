@@ -30,13 +30,13 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
 
 
     @Override
-    public User findOne(Long id) {
-        LOG.trace(getClass() + " : findOne ... ");
-        LOG.trace(getClass() + " : findOne ... id = " + id);
+    public User procSimple(Long id) {
+        LOG.trace(getClass() + " : procSimple ... ");
+        LOG.trace(getClass() + " : procSimple ... id = " + id);
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("in_id", id);
         SimpleJdbcCall procReadUser = new SimpleJdbcCall(jdbcTemplate)
-                .withProcedureName("FINDONE_USER")
+                .withProcedureName("PROC_SIMPLE")
                 .withoutProcedureColumnMetaDataAccess()
                 .useInParameterNames("in_id")
                 .declareParameters(
@@ -47,16 +47,30 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
                 );
         Map out = procReadUser.execute(params);
         User user = null;
-        if (out != null) {
+        if (out.get("out_login") != null) {
             user = new User();
+            user.setLogin((String)out.get("in_id"));
             user.setLogin((String)out.get("out_login"));
             user.setEmail((String) out.get("out_email"));
             user.setPassword((String) out.get("out_password"));
-            LOG.trace(getClass() + " : findOne. ");
+            LOG.trace(getClass() + " : procSimple. ");
         }
         else {
-            LOG.trace(getClass() + " : findOne. Not found.");
+            LOG.trace(getClass() + " : procSimple. Not found.");
         }
         return user;
+    }
+
+    @Override
+    public String funcSimple(Long id) {
+        LOG.trace(getClass() + " : funcSimple ... ");
+        SqlParameterSource params = new MapSqlParameterSource()
+                .addValue("in_id", id);
+        SimpleJdbcCall funcReadUser = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("FUNC_SIMPLE");
+        String fullInfo = funcReadUser.executeFunction(String.class,params);
+
+        LOG.trace(getClass() + " : funcSimple. ");
+        return fullInfo;
     }
 }
