@@ -45,7 +45,8 @@ public class UserServiceOverMyBatis {
     public User save(final User user) {
         LOG.trace(getClass() + " : save ... ");
         if(user.getId() == null) {
-            Long id = userDAO.save(user);
+            userDAO.save(user);
+//            Long id = userDAO.save(user);
 //            user.setId(id);
         }
         LOG.trace(getClass() + " : save.");
