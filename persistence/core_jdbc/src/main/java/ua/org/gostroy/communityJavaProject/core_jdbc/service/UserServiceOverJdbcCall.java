@@ -26,12 +26,8 @@ public class UserServiceOverJdbcCall {
     public User procSimple(Long id) {
         LOG.trace(getClass() + " : procSimple ... ");
         User user = userDAO.procSimple(id);
-        if (user != null) {
-            LOG.trace(getClass() + " : procSimple. ");
-            return user;
-        }
-        LOG.trace(getClass() + " : procSimple. Not found.");
-        return null;
+        LOG.trace(getClass() + " : procSimple. ");
+        return user;
     }
 
     public String funcSimple(Long id) {

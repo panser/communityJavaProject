@@ -3,6 +3,7 @@ package ua.org.gostroy.communityJavaProject.core_jdbc.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
@@ -44,23 +45,18 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
                 .useInParameterNames("in_id")
                 .declareParameters(
                         new SqlParameter("in_id", Types.NUMERIC),
-                        new SqlOutParameter("out_login", Types.VARCHAR),
                         new SqlOutParameter("out_email", Types.VARCHAR),
+                        new SqlOutParameter("out_login", Types.VARCHAR),
                         new SqlOutParameter("out_password", Types.VARCHAR)
                 );
         Map out = procReadUser.execute(params);
-        User user = null;
-        if (out.get("out_login") != null) {
-            user = new User();
-            user.setLogin((String)out.get("in_id"));
-            user.setLogin((String)out.get("out_login"));
-            user.setEmail((String) out.get("out_email"));
-            user.setPassword((String) out.get("out_password"));
-            LOG.trace(getClass() + " : procSimple. ");
-        }
-        else {
-            LOG.trace(getClass() + " : procSimple. Not found.");
-        }
+
+        User user = new User();
+        user.setId(id);
+        user.setLogin((String)out.get("out_login"));
+        user.setEmail((String) out.get("out_email"));
+        user.setPassword((String) out.get("out_password"));
+        LOG.trace(getClass() + " : procSimple. ");
         return user;
     }
 
@@ -71,7 +67,7 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
                 .addValue("in_id", id);
         SimpleJdbcCall funcReadUser = new SimpleJdbcCall(jdbcTemplate)
                 .withFunctionName("FUNC_SIMPLE");
-        String fullInfo = funcReadUser.executeFunction(String.class,params);
+        String fullInfo = funcReadUser.executeFunction(String.class, params);
 
         LOG.trace(getClass() + " : funcSimple. ");
         return fullInfo;
@@ -83,7 +79,7 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
         SimpleJdbcCall proc = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("PROC_OUT_REF")
                 .returningResultSet("users",
-                        ParameterizedBeanPropertyRowMapper.newInstance(User.class)
+                        BeanPropertyRowMapper.newInstance(User.class)
                 );
         Map out = proc.execute(new HashMap<String, Object>(0));
         return (List) out.get("users");

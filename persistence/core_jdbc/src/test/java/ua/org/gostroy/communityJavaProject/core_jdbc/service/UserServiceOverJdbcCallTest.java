@@ -1,6 +1,8 @@
 package ua.org.gostroy.communityJavaProject.core_jdbc.service;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,27 +22,45 @@ import java.util.List;
 @ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_jdbc/applicationContext.xml"})
 public class UserServiceOverJdbcCallTest {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
-    User testUser;
 
+    User testUser;
     @Autowired
-    UserServiceOverJdbcCall userService;
+    UserServiceOverJdbcCall userServiceOverJdbcCall;
+    @Autowired
+    UserServiceOverJdbc userService;
+
+    @Before
+    public void setup(){
+        LOG.trace(getClass() + ": setup() ...");
+        testUser = new User();
+        testUser.setLogin("core_jdbc:testSetup");
+        testUser = userService.save(testUser);
+        LOG.trace(getClass() + ": setup().");
+    }
+
+    @After
+    public void destroy(){
+        LOG.trace(getClass() + ": destroy() ...");
+        LOG.trace(getClass() + ": destroy(), testUser = " + testUser);
+        userService.delete(testUser);
+        LOG.trace(getClass() + ": destroy().");
+    }
 
     @Test
     public void procSimple(){
-        User user = userService.procSimple(1L);
-        Assert.assertNotNull(user);
+        User user = userServiceOverJdbcCall.procSimple(testUser.getId());
+        Assert.assertEquals(user.getLogin(), testUser.getLogin());
     }
 
     @Test
     public void funcSimple(){
-        String result = userService.funcSimple(1L);
+        String result = userServiceOverJdbcCall.funcSimple(testUser.getId());
         Assert.assertNotNull(result);
     }
 
     @Test
     public void procOutRef(){
-        List<User> result = userService.procOutRef();
-//        Assert.assertNotNull(result);
-        Assert.assertEquals(result.size(), 2);
+        List<User> result = userServiceOverJdbcCall.procOutRef();
+        Assert.assertNotNull(result);
     }
 }
