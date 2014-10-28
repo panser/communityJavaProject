@@ -9,6 +9,8 @@ import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserDao;
 import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallDao;
 
+import java.util.List;
+
 /**
  * Created by Panov Sergey on 10/26/2014.
  */
@@ -36,6 +38,13 @@ public class UserServiceOverJdbcCall {
         LOG.trace(getClass() + " : funcSimple ... ");
         String result = userDAO.funcSimple(id);
         LOG.trace(getClass() + " : funcSimple. ");
+        return result;
+    }
+
+    public List<User> procOutRef() {
+        LOG.trace(getClass() + " : procOutRef ... ");
+        List<User> result = userDAO.procOutRef();
+        LOG.trace(getClass() + " : procOutRef. ");
         return result;
     }
 }

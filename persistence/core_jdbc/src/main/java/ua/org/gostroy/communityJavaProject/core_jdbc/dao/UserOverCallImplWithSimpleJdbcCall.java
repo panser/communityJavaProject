@@ -8,11 +8,14 @@ import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,4 +76,17 @@ public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
         LOG.trace(getClass() + " : funcSimple. ");
         return fullInfo;
     }
+
+    @Override
+    public List<User> procOutRef() {
+        LOG.trace(getClass() + " : procSimple ... ");
+        SimpleJdbcCall proc = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("PROC_OUT_REF")
+                .returningResultSet("users",
+                        ParameterizedBeanPropertyRowMapper.newInstance(User.class)
+                );
+        Map out = proc.execute(new HashMap<String, Object>(0));
+        return (List) out.get("users");
+    }
+
 }

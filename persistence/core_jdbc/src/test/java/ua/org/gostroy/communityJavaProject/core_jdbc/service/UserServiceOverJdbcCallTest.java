@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
+import java.util.List;
+
 /**
  * Created by Panov Sergey on 10/26/2014.
  */
@@ -33,5 +35,12 @@ public class UserServiceOverJdbcCallTest {
     public void funcSimple(){
         String result = userService.funcSimple(1L);
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void procOutRef(){
+        List<User> result = userService.procOutRef();
+//        Assert.assertNotNull(result);
+        Assert.assertEquals(result.size(), 2);
     }
 }
