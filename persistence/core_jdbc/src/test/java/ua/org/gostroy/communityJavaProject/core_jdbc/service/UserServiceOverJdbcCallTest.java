@@ -63,9 +63,9 @@ public class UserServiceOverJdbcCallTest {
     }
 
     @Test
-//    @Ignore
     public void procInArray(){
-        BigDecimal result = userServiceOverJdbcCall.procInArray(new Long[]{1L, 3L});
+        Long id = testUser.getId();
+        BigDecimal result = userServiceOverJdbcCall.procInArray(new Long[]{id, id});
         Assert.assertEquals(result, new BigDecimal(0));
     }
 }
