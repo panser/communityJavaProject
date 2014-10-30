@@ -31,4 +31,13 @@
 
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+    <bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserImplJpa"/>
+    <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserImplJpaOverJPQL"/>-->
+    <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserImplJpaOverCriteriaApi"/>-->
+
+    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserOverCallImplWithNamedStoredProcedureQuery"/>-->
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserOverCallImplWithNamedNativeQuery"/>
+
 </beans>

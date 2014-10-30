@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 9/29/2014.
  */
-@Repository
 public class UserImplJpa implements UserDao {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
