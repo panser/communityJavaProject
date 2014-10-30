@@ -1,9 +1,6 @@
 package ua.org.gostroy.communityJavaProject.core_jdbc.service;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -62,5 +60,12 @@ public class UserServiceOverJdbcCallTest {
     public void procOutRef(){
         List<User> result = userServiceOverJdbcCall.procOutRef();
         Assert.assertNotNull(result);
+    }
+
+    @Test
+//    @Ignore
+    public void procInArray(){
+        BigDecimal result = userServiceOverJdbcCall.procInArray(new Long[]{1L, 3L});
+        Assert.assertEquals(result, new BigDecimal(0));
     }
 }

@@ -14,7 +14,7 @@
 
     <bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequence"/>
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplJdbcOverSequenceAndTrigger"/>-->
-    <!--UserImplSimpleJdbcOverSequence   -  NOT WORK (can work only with trigger in OracleBD or with MySQL GenerationType.IDENTITY)-->
+    <!--UserImplSimpleJdbcOverSequence   -  NOT WORK (can work only with trigger in Oracle)-->
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplSimpleJdbcOverSequence"/>-->
 
     <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallImplWithSimpleJdbcCall"/>

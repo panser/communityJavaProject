@@ -6,6 +6,42 @@ import java.io.Serializable;
 /**
  * Created by Panov Sergey on 9/29/2014.
  */
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "procSimple",
+                procedureName = "PROC_SIMPLE",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_email", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_login", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_password", type = String.class),
+                }
+        ),
+        @NamedStoredProcedureQuery(
+                name = "procOutRef",
+                procedureName = "PROC_OUT_REF"
+//                resultClasses = void.class
+//                parameters = {
+//                        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "users", type = void.class),
+//                }
+        )
+})
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "procSimpleNative",
+                query = "{ call PROC_SIMPLE(:in_id, :out_email, :out_login, :out_password) }",
+                hints = {@QueryHint(name = "org.hibernate.callable", value = "true") }),
+
+        @NamedNativeQuery(
+                name = "procOutRefNative",
+                query = "{ call PROC_OUT_REF(?) }",
+                resultClass = User.class,
+                hints = {@QueryHint(name = "org.hibernate.callable", value = "true") })
+
+})
+
 @Entity
 @Table(name = "core_users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"login", "email"})

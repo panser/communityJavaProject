@@ -9,6 +9,7 @@ import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserDao;
 import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallDao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -41,6 +42,11 @@ public class UserServiceOverJdbcCall {
         LOG.trace(getClass() + " : procOutRef ... ");
         List<User> result = userDAO.procOutRef();
         LOG.trace(getClass() + " : procOutRef. ");
+        return result;
+    }
+
+    public BigDecimal procInArray(Long[] ids) {
+        BigDecimal result = userDAO.procInArray(ids);
         return result;
     }
 }
