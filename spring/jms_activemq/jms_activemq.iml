@@ -46,8 +46,8 @@
     <orderEntry type="library" name="Maven: org.jasypt:jasypt:1.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xbean:xbean-spring:3.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.1.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.1.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-access:1.0.10" level="project" />

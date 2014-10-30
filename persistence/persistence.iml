@@ -18,9 +18,9 @@
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.1.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.1.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
