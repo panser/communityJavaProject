@@ -187,10 +187,12 @@
         <junit.version>4.11</junit.version>
         <mysql-connector.version>5.1.33</mysql-connector.version>
         <eclipse.javax.persistence.version>2.1.0</eclipse.javax.persistence.version>
+        <eclipse.persistence.jpa.version>2.5.2</eclipse.persistence.jpa.version>
         <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
         <mybatis.version>3.2.7</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
-        <camel-version>2.14.0</camel-version>
+        <camel.version>2.14.0</camel.version>
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
     </properties>
 
     <dependencyManagement>
@@ -265,6 +267,13 @@
                 <version>${spring.version}</version>
             </dependency>
 
+            <!--Validation-->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+            </dependency>
+
             <!-- Logging -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -329,6 +338,8 @@
                 <artifactId>usertype.core</artifactId>
                 <version>3.2.0.GA</version>
             </dependency>
+
+
 
         </dependencies>
     </dependencyManagement>

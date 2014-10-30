@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--
+    <bean id="myEntityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="ua.org.gostroy.communityJavaProject.core_entity.entity"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                &lt;!&ndash;<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>&ndash;&gt;
+            </props>
+        </property>
+&lt;!&ndash;
+        <property name="persistenceXmlLocation" value="classpath:ua/org/gostroy/communityJavaProject/core_jpa_hibernate/persistence.xml" />
+        <property name="persistenceUnitName" value="db_localhost_hsqldb" />
+&ndash;&gt;
+    </bean>
+-->
+
+<!--
+    <bean id="txManagerJPA" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="myEntityManager"/>
+    </bean>
+-->
+
+<!--
+    <context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/db_gostroy_oracle.properties" />
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="5"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testWhileIdle" value="true"/>
+    </bean>
+-->
+
+    <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+        <property name="databasePlatform" value="org.eclipse.persistence.platform.database.OraclePlatform"/>
+        <property name="generateDdl" value="false"/>
+        <property name="showSql" value="true"/>
+    </bean>
+
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+
+    <!--<context:load-time-weaver/>-->
+    <bean id="myEntityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="ua.org.gostroy.communityJavaProject.core_entity.entity"/>
+        <property name="jpaVendorAdapter" ref="jpaAdapter"/>
+        <property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
+            <!--<bean class="org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver"/>-->
+            <!--<bean class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver"/>-->
+        </property>
+    </bean>
+
+    <bean id="txManagerJPA" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="myEntityManager" />
+        <property name="jpaDialect" ref="jpaDialect" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+    <tx:annotation-driven transaction-manager="txManagerJPA"/>
+
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+    <bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserImplJpa"/>
+    <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserImplJpaOverJPQL"/>-->
+    <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserImplJpaOverCriteriaApi"/>-->
+
+    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserOverCallImplWithNamedStoredProcedureQuery"/>-->
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserOverCallImplWithNamedNativeQuery"/>
+
+</beans>
