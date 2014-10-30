@@ -51,12 +51,12 @@ public class User implements Serializable {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 //    for Oracle and H2, HSQLDB
-    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS_SEQ", schema = "BEANS_CONFIG", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
+//    @SequenceGenerator(name="core_users_seq", sequenceName="CORE_USERS_SEQ", schema = "BEANS_CONFIG", allocationSize=1)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "core_users_seq")
 
 //    for ALL
-//    @TableGenerator(name="TABLE_GEN", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME", valueColumnName="SEQ_COUNT", pkColumnValue="core_users_seq")
-//    @GeneratedValue(strategy=GenerationType.TABLE, generator="TABLE_GEN")
+    @TableGenerator(name="TABLE_GEN", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME", valueColumnName="SEQ_COUNT", pkColumnValue="core_users_seq")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="TABLE_GEN")
 
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
