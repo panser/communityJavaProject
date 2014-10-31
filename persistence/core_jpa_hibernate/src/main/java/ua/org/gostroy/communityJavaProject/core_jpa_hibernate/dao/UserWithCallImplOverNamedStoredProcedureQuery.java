@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Panov Sergey on 10/29/2014.
  */
 
-public class UserOverCallImplWithNamedStoredProcedureQuery implements UserOverCallDao {
+public class UserWithCallImplOverNamedStoredProcedureQuery implements UserWithCallDao {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -22,10 +22,20 @@ public class UserOverCallImplWithNamedStoredProcedureQuery implements UserOverCa
     @Override
     public User procSimple(Long id) {
         StoredProcedureQuery query = em.createNamedStoredProcedureQuery("procSimple");
-        query.setParameter("in_id", id);
-        String email = (String)query.getOutputParameterValue("out_email");
-        String login = (String)query.getOutputParameterValue("out_login");
-        String password = (String)query.getOutputParameterValue("out_password");
+        query.setParameter("IN_ID", id);
+
+        query.execute();
+
+/*
+        int updateCount = query.getUpdateCount();
+        if (resultSet) {
+            // Result sets must be processed first through getResultList() calls.
+        }
+*/
+
+        String email = (String)query.getOutputParameterValue("OUT_EMAIL");
+        String login = (String)query.getOutputParameterValue("OUT_LOGIN");
+        String password = (String)query.getOutputParameterValue("OUT_PASSWORD");
 
         User user = new User();
         user.setId(id);
@@ -44,11 +54,11 @@ public class UserOverCallImplWithNamedStoredProcedureQuery implements UserOverCa
     @Override
     public List<User> procOutRef() {
         StoredProcedureQuery query = em.createNamedStoredProcedureQuery("procOutRef");
-        query.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
-        query.execute();
+        query.execute();   // not work with Oracle, bug https://hibernate.atlassian.net/browse/HHH-9286
+//        List<User> result = query.getResultList();   //for MySQL
+
+        List<User> result = (List)query.getOutputParameterValue("users");  //for Oracle
 //        List<User> result = (List)query.getOutputParameterValue(1);
-        List<User> result = (List)query.getOutputParameterValue("users");
-//        List<User> result = query.getResultList();
         return result;
     }
 

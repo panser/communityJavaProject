@@ -12,5 +12,7 @@
         <property name="show_sql">true</property>
 
         <mapping class="ua.org.gostroy.communityJavaProject.core_entity.entity.User" />
+
     </session-factory>
+
 </hibernate-configuration>

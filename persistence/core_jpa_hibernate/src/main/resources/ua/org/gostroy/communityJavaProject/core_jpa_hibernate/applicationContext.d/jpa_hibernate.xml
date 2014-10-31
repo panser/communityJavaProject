@@ -37,7 +37,7 @@
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserImplJpaOverJPQL"/>-->
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserImplJpaOverCriteriaApi"/>-->
 
-    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserOverCallImplWithNamedStoredProcedureQuery"/>-->
-    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserOverCallImplWithNamedNativeQuery"/>
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserWithCallImplOverNamedStoredProcedureQuery"/>
+    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserWithCallImplOverNamedNativeQuery"/>-->
 
 </beans>

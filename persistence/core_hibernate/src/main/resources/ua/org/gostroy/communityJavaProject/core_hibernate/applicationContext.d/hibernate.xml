@@ -27,4 +27,6 @@
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
     <bean id="userDao" class="ua.org.gostroy.communityJavaProject.core_hibernate.dao.UserImplHibernateOverHql"/>
+
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_hibernate.dao.UserWithCallImplOverNamedNativeQuery"/>
 </beans>

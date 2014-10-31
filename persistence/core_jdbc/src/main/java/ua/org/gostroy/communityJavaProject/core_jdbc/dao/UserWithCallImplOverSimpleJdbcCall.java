@@ -1,7 +1,5 @@
 package ua.org.gostroy.communityJavaProject.core_jdbc.dao;
 
-import oracle.jdbc.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 import oracle.sql.ARRAY;
 import oracle.sql.ArrayDescriptor;
 import org.slf4j.Logger;
@@ -16,19 +14,17 @@ import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Panov Sergey on 10/26/2014.
  */
-public class UserOverCallImplWithSimpleJdbcCall implements UserOverCallDao {
+public class UserWithCallImplOverSimpleJdbcCall implements UserWithCallDao {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
     private JdbcTemplate jdbcTemplate;
 

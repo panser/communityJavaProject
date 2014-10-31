@@ -17,7 +17,7 @@
     <!--UserImplSimpleJdbcOverSequence   -  NOT WORK (can work only with trigger in Oracle)-->
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserImplSimpleJdbcOverSequence"/>-->
 
-    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallImplWithSimpleJdbcCall"/>
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserWithCallImplOverSimpleJdbcCall"/>
 
     <!-- As an alternative, for embedded databases see <jdbc:embedded-database/>. -->
     <!--<jdbc:initialize-database data-source="dataSource">-->

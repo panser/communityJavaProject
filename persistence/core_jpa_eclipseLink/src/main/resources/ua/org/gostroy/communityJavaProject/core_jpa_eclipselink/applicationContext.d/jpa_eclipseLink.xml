@@ -68,7 +68,7 @@
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserImplJpaOverJPQL"/>-->
     <!--<bean id = "userDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserImplJpaOverCriteriaApi"/>-->
 
-    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserOverCallImplWithNamedStoredProcedureQuery"/>-->
-    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserOverCallImplWithNamedNativeQuery"/>
+    <!--<bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserWithCallImplWithStoredCall"/>-->
+    <bean id = "userOverCallDao" class="ua.org.gostroy.communityJavaProject.core_jpa_eclipselink.dao.UserWithCallImplOverNamedStoredProcedureQuery"/>
 
 </beans>

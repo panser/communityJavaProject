@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
-import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserDao;
-import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserOverCallDao;
+import ua.org.gostroy.communityJavaProject.core_jdbc.dao.UserWithCallDao;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,7 +20,7 @@ public class UserServiceOverJdbcCall {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    UserOverCallDao userDAO;
+    UserWithCallDao userDAO;
 
     @Transactional(readOnly = false)
     public User procSimple(Long id) {

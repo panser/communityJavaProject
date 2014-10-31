@@ -8,13 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Panov Sergey on 10/29/2014.
  */
-public class UserOverCallImplWithNamedNativeQuery implements UserOverCallDao {
+public class UserWithCallImplOverNamedNativeQuery implements UserWithCallDao {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -24,10 +23,10 @@ public class UserOverCallImplWithNamedNativeQuery implements UserOverCallDao {
     @Override
     public User procSimple(Long id) {
         Query query = em.createNamedQuery("procSimpleNative");
-        query.setParameter("out_email",null);
-        query.setParameter("out_login",null);
-        query.setParameter("out_password",null);
         query.setParameter("in_id",id);
+
+        query.executeUpdate();
+
         String email = (String)query.getParameterValue("out_email");
         String login = (String)query.getParameterValue("out_login");
         String password = (String)query.getParameterValue("out_password");

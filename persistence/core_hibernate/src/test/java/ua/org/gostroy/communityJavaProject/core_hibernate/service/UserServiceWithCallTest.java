@@ -1,4 +1,4 @@
-package ua.org.gostroy.communityJavaProject.core_jpa_hibernate.service;
+package ua.org.gostroy.communityJavaProject.core_hibernate.service;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Panov Sergey on 10/29/2014.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_jpa_hibernate/applicationContext.xml"})
+@ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/core_hibernate/applicationContext.xml"})
 public class UserServiceWithCallTest {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -25,7 +25,7 @@ public class UserServiceWithCallTest {
     @Autowired
     UserServiceWithCall userServiceWithCall;
     @Autowired
-    UserServiceOverJpaHibernate userService;
+    UserServiceOverHibernate userService;
 
     @Before
     public void setup(){
@@ -45,7 +45,7 @@ public class UserServiceWithCallTest {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void procSimple(){
         User user = userServiceWithCall.procSimple(testUser.getId());
         Assert.assertEquals(user.getLogin(), testUser.getLogin());

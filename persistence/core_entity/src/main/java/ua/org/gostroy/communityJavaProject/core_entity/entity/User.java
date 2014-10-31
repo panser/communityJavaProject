@@ -12,19 +12,19 @@ import java.io.Serializable;
                 name = "procSimple",
                 procedureName = "PROC_SIMPLE",
                 parameters = {
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id", type = Long.class),
-                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_email", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_login", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_password", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IN_ID", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "OUT_EMAIL", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "OUT_LOGIN", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "OUT_PASSWORD", type = String.class),
                 }
         ),
         @NamedStoredProcedureQuery(
                 name = "procOutRef",
                 procedureName = "PROC_OUT_REF"
-//                resultClasses = void.class
-//                parameters = {
-//                        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "users", type = void.class),
-//                }
+                ,resultClasses = User.class
+                ,parameters = {  //for Oracle
+                        @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "users", type = void.class),
+                }
         )
 })
 
@@ -32,14 +32,15 @@ import java.io.Serializable;
         @NamedNativeQuery(
                 name = "procSimpleNative",
                 query = "{ call PROC_SIMPLE(:in_id, :out_email, :out_login, :out_password) }",
+//                callable = true,
                 hints = {@QueryHint(name = "org.hibernate.callable", value = "true") }),
 
         @NamedNativeQuery(
                 name = "procOutRefNative",
-                query = "{ call PROC_OUT_REF(?) }",
+//                query = "{ call PROC_OUT_REF() }",  //for MySQL
+                query = "{ call PROC_OUT_REF(?) }",  //for Oracle
                 resultClass = User.class,
-                hints = {@QueryHint(name = "org.hibernate.callable", value = "true") })
-
+                hints = {@QueryHint(name = "org.hibernate.callable", value = "true") }),
 })
 
 @Entity

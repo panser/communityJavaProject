@@ -1,4 +1,4 @@
-package ua.org.gostroy.communityJavaProject.core_jpa_hibernate.service;
+package ua.org.gostroy.communityJavaProject.core_hibernate.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.communityJavaProject.core_entity.entity.User;
-import ua.org.gostroy.communityJavaProject.core_jpa_hibernate.dao.UserWithCallDao;
+import ua.org.gostroy.communityJavaProject.core_hibernate.dao.UserWithCallDao;
 
 import java.math.BigDecimal;
 import java.util.List;
