@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 <!--
     //TransactionAwareDataSourceProxy - help to use Jdbc and Hibernate code one transaction
@@ -28,5 +28,10 @@
         <property name="validationQuery" value="SELECT 1"/>
         <property name="testWhileIdle" value="true"/>
     </bean>
+
+<!--
+    &lt;!&ndash; Configure an embedded H2 database server &ndash;&gt;
+    <jdbc:embedded-database id="dataSource" type="H2" />
+-->
 
 </beans>
