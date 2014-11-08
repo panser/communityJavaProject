@@ -31,6 +31,8 @@ public class UserServiceOverMyBatisTest {
         LOG.trace(getClass() + ": setup() ...");
         testUser = new User();
         testUser.setLogin("core_mybatis:testSetup");
+        testUser.setEmail("core_mybatis:testSetup");
+        testUser.setPassword("core_mybatis:testSetup");
         testUser = userService.save(testUser);
         LOG.trace(getClass() + ": setup().");
     }
@@ -62,6 +64,8 @@ public class UserServiceOverMyBatisTest {
     public void save(){
         LOG.trace(getClass() + ": save() ...");
         testUser.setLogin("core_mybatis:testSave");
+        testUser.setEmail("core_mybatis:testSave");
+        testUser.setPassword("core_mybatis:testSave");
         User saveUser = userService.save(testUser);
         LOG.trace(getClass() + ": save(), testUser = " + testUser);
         LOG.trace(getClass() + ": save(), saveUser = " + saveUser);

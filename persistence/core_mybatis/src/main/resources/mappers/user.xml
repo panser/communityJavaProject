@@ -13,10 +13,14 @@
 
     <!-- ************** CREATE ************** -->
     <!--<insert id="save" parameterType="User" keyProperty="id">-->
-    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="User" useGeneratedKeys="true" >
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT CORE_USERS_SEQ.nextVal from dual
+        </selectKey>
+
         INSERT
-        INTO core_users (login, email, password)
-        VALUES (#{login}, #{email}, #{password})
+        INTO core_users (id, login, email, password)
+        VALUES ( #{id}, #{login}, #{email}, #{password})
     </insert>
 
     <!-- ************** READ ************** -->

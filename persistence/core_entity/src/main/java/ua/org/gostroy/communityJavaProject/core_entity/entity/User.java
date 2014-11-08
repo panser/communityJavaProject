@@ -61,6 +61,7 @@ public class User implements Serializable {
 
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(precision = 4)
     private Long id;
     @Column(unique = true)
     private String login;

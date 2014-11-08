@@ -45,7 +45,7 @@ public class UserServiceWithCallTest {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void procSimple(){
         User user = userServiceWithCall.procSimple(testUser.getId());
         Assert.assertEquals(user.getLogin(), testUser.getLogin());
