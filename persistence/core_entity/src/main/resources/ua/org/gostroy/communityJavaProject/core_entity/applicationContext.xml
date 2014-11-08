@@ -18,5 +18,6 @@
     <!--<context:property-placeholder location="classpath:/ua/org/gostroy/communityJavaProject/core_entity/properties/${type}.properties" />-->
 
     <import resource="applicationContext.d/dataSource.xml"/>
+    <!--<import resource="applicationContext.d/beans.xml"/>-->
 
 </beans>
