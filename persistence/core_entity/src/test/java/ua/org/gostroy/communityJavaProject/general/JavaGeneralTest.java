@@ -48,5 +48,12 @@ public class JavaGeneralTest {
         LOG.debug("rounding down? " + f.intValue());
     }
 
+    @Test
+    public void testIntegerPool(){
+        Integer c = new Integer(100);
+        Integer b = new Integer(100);
+        Assert.assertFalse(c == b);
+    }
+
 
 }

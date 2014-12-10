@@ -33,5 +33,18 @@
     &lt;!&ndash; Configure an embedded H2 database server &ndash;&gt;
     <jdbc:embedded-database id="dataSource" type="H2" />
 -->
+<!--
+    <bean id="h2Server" class="org.h2.tools.Server" factory-method="createTcpServer" init-method="start" destroy-method="stop" depends-on="h2WebServer">
+        <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,9092"/>
+    </bean>
+    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+        <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" depends-on="h2Server">
+        <property name="driverClass" value="org.h2.Driver"/>
+        <property name="jdbcUrl" value="jdbc:h2:mem:foo_db"/>
+    </bean>
+-->
 
 </beans>
