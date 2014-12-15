@@ -21,6 +21,7 @@
         <module>core_mybatis</module>
         <module>core_jpa_eclipseLink</module>
         <module>core_spring_data_mongodb</module>
+        <module>core_spring_hadoop</module>
     </modules>
 
     <dependencyManagement>

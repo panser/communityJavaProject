@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdp="http://www.springframework.org/schema/hadoop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+
+    <!--Configuring Hadoop-->
+    <hdp:configuration />
+    <!--<hdp:configuration resources="classpath:/custom-site.xml, classpath:/hq-site.xml">-->
+<!--
+    <hdp:configuration>
+        fs.default.name=${hd.fs}
+        hadoop.tmp.dir=file://${java.io.tmpdir}
+        hangar=${number:18}
+     </hdp:configuration>
+-->
+
+    <!--Creating a Hadoop Job-->
+    <hdp:job id="mr-job"
+             input-path="/input/" output-path="/ouput/"
+             mapper="org.apache.hadoop.examples.WordCount.TokenizerMapper"
+             reducer="org.apache.hadoop.examples.WordCount.IntSumReducer"/>
+
+    <hdp:streaming id="streaming"
+                   input-path="/input/" output-path="/ouput/"
+                   mapper="${path.cat}" reducer="${path.wc}"/>
+
+
+    <!--Running a Hadoop Job-->
+    <hdp:job-runner id="myjob-runner" pre-action="cleanup-script" post-action="export-results" job-ref="streaming" run-at-startup="true"/>
+
+
+    <!--Running a Hadoop Tool-->
+    <hdp:tool-runner id="someTool" run-at-startup="true">
+        <hdp:tool>
+            <bean class="org.foo.AnotherTool" p:input="data/in.txt" p:output="data/out.txt"/>
+        </hdp:tool>
+    </hdp:tool-runner>
+
+    <hdp:jar-runner id="wordcount" jar="hadoop-examples.jar" run-at-startup="true">
+        <hdp:arg value="wordcount"/>
+        <hdp:arg value="/wordcount/input"/>
+        <hdp:arg value="/wordcount/output"/>
+    </hdp:jar-runner>
+
+</beans>

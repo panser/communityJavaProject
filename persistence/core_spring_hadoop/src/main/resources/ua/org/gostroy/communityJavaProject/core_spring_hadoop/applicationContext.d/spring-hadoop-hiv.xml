@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdp="http://www.springframework.org/schema/hadoop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+
+    <!--Starting a Hive Server-->
+    <hdp:hive-server id="hive-server" host="some-other-host" port="10001" properties-location="classpath:hive-dev.properties" configuration-ref="hadoopConfiguration">
+        someproperty=somevalue
+        hive.exec.scratchdir=/tmp/mydir
+    </hdp:hive-server>
+
+    <!--Using the Hive Thrift Client-->
+    <hive-client-factory host="some-host" port="some-port" xmlns="http://www.springframework.org/schema/hadoop">
+        <hdp:script>
+            DROP TABLE IF EXITS testHiveBatchTable;
+            CREATE TABLE testHiveBatchTable (key int, value string);
+        </hdp:script>
+        <hdp:script location="classpath:org/company/hive/script.q">
+            <arguments>ignore-case=true</arguments>
+        </hdp:script>
+    </hive-client-factory>
+
+</beans>
