@@ -10,7 +10,7 @@
         </encoder>
     </appender>
 
-    <property name="MODULE_NAME" value="core_spring_data" />
+    <property name="MODULE_NAME" value="core_spring_data_mongodb" />
     <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>../var/log/${MODULE_NAME}.log</file>
@@ -31,8 +31,7 @@
 
     </appender>
 
-    <logger name="ua.org.gostroy.communityJavaProject.core_spring_data" level="trace"/>
-    <logger name="org.springframework.data.document.mongodb" level="debug"/>
+    <logger name="ua.org.gostroy.communityJavaProject.core_spring_data_mongodb" level="trace"/>
 
     <!--<logger name="org.springframework" level="trace" />-->
     <!--<logger name="org.springframework.core" level="info" />-->
