@@ -12,5 +12,7 @@
 
     <import resource="applicationContext.d/dataSource.xml"/>
     <import resource="applicationContext.d/jpa_hibernate.xml"/>
+    <import resource="applicationContext.d/rmi.xml"/>
+    <import resource="applicationContext.d/rmi-client.xml"/>
 
 </beans>

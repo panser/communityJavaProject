@@ -1,12 +1,10 @@
-package ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service;
+package ua.org.gostroy.communityJavaProject.rmi.rmi_spring.client;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,50 +13,45 @@ import ua.org.gostroy.communityJavaProject.rmi.rmi_spring.model.User;
 import java.util.List;
 
 /**
- * Created by Panov Sergey on 9/29/2014.
+ * Created by Panov Sergey on 1/11/2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/rmi/rmi_spring/applicationContext.xml"})
-public class UserServiceTest {
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
-    User testUser;
+public class UserRmiClientTest {
 
+    User testUser;
     @Autowired
-    UserService userService;
+    UserRmiClient userClient;
 
     @Before
     public void setup(){
         testUser = new User();
-        testUser.setLogin("rmi_spring:testSetup");
-        testUser = userService.save(testUser);
+        testUser.setLogin("rmi_spring:testSetupRmi");
+        testUser = userClient.save(testUser);
     }
 
     @After
     public void destroy(){
-        userService.delete(testUser);
+        userClient.delete(testUser);
     }
 
     @Test
     public void findAll(){
-        List<User> users = userService.findAll();
+        List<User> users = userClient.findAll();
         Assert.assertNotEquals(users.size(), 0);
     }
 
     @Test
     public void update(){
-        testUser.setLogin("rmi_spring:testUpdate");
-        User updateUser = userService.update(testUser);
-        LOG.trace(getClass() + ": update(), testUser = " + testUser);
-        LOG.trace(getClass() + ": update(), updateUser = " + updateUser);
+        testUser.setLogin("rmi_spring:testUpdateRmi");
+        User updateUser = userClient.update(testUser);
         Assert.assertEquals(testUser.getId(),updateUser.getId());
     }
 
     @Test
     public void save(){
-        testUser.setLogin("rmi_spring:testSave");
-        User saveUser = userService.save(testUser);
-        LOG.trace(getClass() + ": save(), testUser = " + testUser);
-        LOG.trace(getClass() + ": save(), saveUser = " + saveUser);
+        testUser.setLogin("rmi_spring:testSaveRmi");
+        User saveUser = userClient.save(testUser);
         Assert.assertEquals(testUser.getId(), saveUser.getId());
     }
 
