@@ -53,6 +53,7 @@
         <module>springmvc</module>
         <module>camel</module>
         <module>test</module>
+        <module>rmi</module>
     </modules>
 
     <build>
