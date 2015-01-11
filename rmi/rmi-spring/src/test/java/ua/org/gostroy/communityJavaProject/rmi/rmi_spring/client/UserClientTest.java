@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ua.org.gostroy.communityJavaProject.rmi.rmi_spring.model.User;
+import ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService;
 
 import java.util.List;
 
@@ -17,41 +18,41 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/rmi/rmi_spring/applicationContext.xml"})
-public class UserRmiClientTest {
+public class UserClientTest {
 
     User testUser;
     @Autowired
-    UserRmiClient userClient;
+    UserService userClientRmi;
 
     @Before
     public void setup(){
         testUser = new User();
         testUser.setLogin("rmi_spring:testSetupRmi");
-        testUser = userClient.save(testUser);
+        testUser = userClientRmi.save(testUser);
     }
 
     @After
     public void destroy(){
-        userClient.delete(testUser);
+        userClientRmi.delete(testUser);
     }
 
     @Test
     public void findAll(){
-        List<User> users = userClient.findAll();
+        List<User> users = userClientRmi.findAll();
         Assert.assertNotEquals(users.size(), 0);
     }
 
     @Test
     public void update(){
         testUser.setLogin("rmi_spring:testUpdateRmi");
-        User updateUser = userClient.update(testUser);
+        User updateUser = userClientRmi.update(testUser);
         Assert.assertEquals(testUser.getId(),updateUser.getId());
     }
 
     @Test
     public void save(){
         testUser.setLogin("rmi_spring:testSaveRmi");
-        User saveUser = userClient.save(testUser);
+        User saveUser = userClientRmi.save(testUser);
         Assert.assertEquals(testUser.getId(), saveUser.getId());
     }
 

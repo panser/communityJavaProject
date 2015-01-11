@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 1/11/2015.
  */
-@Service
-public class UserRmiClient {
+public class UserClient {
 
     @Autowired
     UserService userService;
