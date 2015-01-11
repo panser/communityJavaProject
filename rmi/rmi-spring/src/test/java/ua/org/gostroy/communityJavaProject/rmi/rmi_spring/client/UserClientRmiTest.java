@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:/ua/org/gostroy/communityJavaProject/rmi/rmi_spring/applicationContext.xml"})
-public class UserClientTest {
+public class UserClientRmiTest {
 
     User testUser;
     @Autowired

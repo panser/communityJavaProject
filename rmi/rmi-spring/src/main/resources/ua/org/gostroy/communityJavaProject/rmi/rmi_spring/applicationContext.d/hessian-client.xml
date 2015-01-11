@@ -3,10 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userClientRmi" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/UserServiceRMI"/>
+    <bean id="userClientHessian" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/hessian/userService"/>
         <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
-        <!--<property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.client.UserServiceOnClient"/>-->
     </bean>
 
 </beans>
