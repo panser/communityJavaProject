@@ -34,6 +34,16 @@
         <url-pattern>/hessian/userService</url-pattern>
     </servlet-mapping>
 
+    <!--burlap-->
+    <servlet>
+        <servlet-name>userBurlapExporter</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userBurlapExporter</servlet-name>
+        <url-pattern>/burlap/userService</url-pattern>
+    </servlet-mapping>
 
     <!--httpInvoker-->
     <servlet>
