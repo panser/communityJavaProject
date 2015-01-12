@@ -5,7 +5,8 @@
 
     <bean id="userService" class="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserServiceImpl"/>
 
-    <bean id="userServiceBurlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+    <!--<bean id="userServiceBurlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">-->
+    <bean id="userServiceBurlap" class="org.springframework.remoting.caucho.SimpleBurlapServiceExporter">
         <property name="service" ref="userService"/>
         <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
     </bean>
