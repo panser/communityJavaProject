@@ -6,9 +6,9 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <value>
-                /hessian/userService=userServiceHessian
-                /burlap/userService=userServiceBurlap
-                /httpInvoker/userService=userServiceHttpInvoker
+                /hessian/userService=userServiceHessianExporter
+                /burlap/userService=userServiceBurlapExporter
+                /httpInvoker/userService=userServiceHttpInvokerExporter
             </value>
         </property>
     </bean>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="httpServer" class="org.springframework.remoting.support.SimpleHttpServerFactoryBean">
+        <property name="contexts">
+            <util:map>
+                <entry key="/httpInvoker/userService" value-ref="userServiceHttpInvokerExporter"/>
+                <entry key="/hessian/userService" value-ref="userServiceHessianExporter"/>
+                <entry key="/burlap/userService" value-ref="userServiceBurlapExporter"/>
+            </util:map>
+        </property>
+        <property name="port" value="8080" />
+    </bean>
+
+    <bean id="userService" class="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserServiceImpl"/>
+
+    <!--Rmi-->
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="UserServiceRMI"/>
+        <property name="service" ref="userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+        <!-- defaults to 1099 -->
+        <property name="registryPort" value="1199"/>
+    </bean>
+    <bean id="userClientRmi" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://localhost:1199/UserServiceRMI"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+        <!--<property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.client.UserServiceOnClient"/>-->
+    </bean>
+
+    <!--Hessian-->
+    <!--<bean id="userServiceHessianExporter" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
+    <bean id="userServiceHessianExporter" class="org.springframework.remoting.caucho.SimpleHessianServiceExporter">
+        <property name="service" ref="userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+    </bean>
+    <bean id="userClientHessian" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/hessian/userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+    </bean>
+
+    <!--Burlap-->
+    <!--<bean id="userServiceBurlapExporter" class="org.springframework.remoting.caucho.BurlapServiceExporter">-->
+    <bean id="userServiceBurlapExporter" class="org.springframework.remoting.caucho.SimpleBurlapServiceExporter">
+        <property name="service" ref="userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+    </bean>
+    <bean id="userClientBurlap" class="org.springframework.remoting.caucho.BurlapProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/burlap/userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+    </bean>
+
+    <!--HttpInvoker-->
+    <!--<bean id="userServiceHttpInvokerExporter" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">-->
+    <bean id="userServiceHttpInvokerExporter" class="org.springframework.remoting.httpinvoker.SimpleHttpInvokerServiceExporter">
+        <property name="service" ref="userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+    </bean>
+    <bean id="userClientHttpInvoker" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/httpInvoker/userService"/>
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+        <!--<property name="httpInvokerRequestExecutor">-->
+        <!--<bean class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor"/>-->
+        <!--</property>-->
+    </bean>
+
+</beans>

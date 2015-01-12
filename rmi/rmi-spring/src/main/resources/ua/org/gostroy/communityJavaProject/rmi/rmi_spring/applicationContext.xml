@@ -12,18 +12,6 @@
 
     <import resource="applicationContext.d/dataSource.xml"/>
     <import resource="applicationContext.d/jpa_hibernate.xml"/>
-
-    <import resource="applicationContext.d/rmi.xml"/>
-    <import resource="applicationContext.d/rmi-client.xml"/>
-
-    <import resource="applicationContext.d/hessian.xml"/>
-    <import resource="applicationContext.d/hessian-client.xml"/>
-    <!--<import resource="applicationContext.d/spring-web.xml"/>-->
-
-    <import resource="applicationContext.d/burlap.xml"/>
-    <import resource="applicationContext.d/burlap-client.xml"/>
-
-    <import resource="applicationContext.d/http_invoker.xml"/>
-    <import resource="applicationContext.d/http_invoker-client.xml"/>
+    <import resource="applicationContext.d/remote-service.xml"/>
 
 </beans>
