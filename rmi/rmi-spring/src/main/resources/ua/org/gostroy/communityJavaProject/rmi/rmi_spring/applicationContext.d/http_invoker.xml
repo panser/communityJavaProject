@@ -5,12 +5,9 @@
 
     <bean id="userService" class="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserServiceImpl"/>
 
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <property name="serviceName" value="UserServiceRMI"/>
+    <bean id="userServiceHessian" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
         <property name="service" ref="userService"/>
         <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
-        <!-- defaults to 1099 -->
-        <property name="registryPort" value="1199"/>
     </bean>
 
 </beans>

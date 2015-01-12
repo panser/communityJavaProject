@@ -23,14 +23,26 @@
     </servlet-mapping>
 -->
 
+    <!--hession-->
     <servlet>
-        <servlet-name>userExporter</servlet-name>
+        <servlet-name>userHessionExporter</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>userExporter</servlet-name>
+        <servlet-name>userHessionExporter</servlet-name>
         <url-pattern>/hessian/userService</url-pattern>
     </servlet-mapping>
 
+
+    <!--httpInvoker-->
+    <servlet>
+        <servlet-name>userHttpInvokerExporter</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userHttpInvokerExporter</servlet-name>
+        <url-pattern>/httpInvoker/userService</url-pattern>
+    </servlet-mapping>
 </web-app>
