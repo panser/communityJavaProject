@@ -5,7 +5,7 @@
 
     <bean id="userService" class="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserServiceImpl"/>
 
-    <bean id="userServiceHessian" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+    <bean id="userServiceHttpInvoker" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
         <property name="service" ref="userService"/>
         <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
     </bean>
