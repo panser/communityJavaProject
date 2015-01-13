@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+    может использоваться, только ес-
+    ли среда выполнения JAX-WS поддерживает публикацию конечных
+    точек в произвольные адреса (это означает, что провайдер JAX-WS
+    должен поставляться с собственным HTTP-сервером для создания
+    необходимой инфраструктуры публикации службы в требуемом адресе).
+        Такой поддержкой обладает среда вы-
+    полнения JAX-WS, входящая в состав Sun 1.6 JDK. Другие реализа-
+    ции JAX-WS, как упоминаемая здесь JAX-WS 2.1, не поддерживают
+    подобного способа публикации конечных точек
+        == UserServiceSunJaxWsEndPoint
+-->
+<!--
+        Если вам придется развертывать среду выполнения JAX-WS,
+        не поддерживающую публикацию службы в указанном адресе, вы
+        должны будете реализовать собственные конечные точки JAX-WS
+        более обычным способом. Это означает, что жизненным циклом
+        конечных точек будет управлять среда выполнения JAX-WS, а не
+        Spring.
+         == UserServiceEndPoint
+-->
+
+    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+        <property name="baseAddress" value="http://localhost:8888/jaxws/" />
+    </bean>
+
+
+    <bean id="userClientSunJaxWs" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+        <property name="serviceInterface" value="ua.org.gostroy.communityJavaProject.rmi.rmi_spring.service.UserService"/>
+        <property name="wsdlDocumentUrl" value="http://localhost:8888/jaxws/UserServiceSunJaxWsEndPoint?WSDL"/>
+        <property name="namespaceUri" value="http://localhost:8888/jaxws/"/>
+        <property name="serviceName" value="UserServiceSunJaxWs"/>
+        <property name="portName" value="8888"/>
+    </bean>
+
+</beans>

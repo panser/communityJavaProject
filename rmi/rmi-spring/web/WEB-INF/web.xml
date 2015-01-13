@@ -5,9 +5,14 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
+    <!-- this is for Spring -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
 <!--
     <servlet>
-        <servlet-name>dispatcher_hessian</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -18,12 +23,13 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>dispatcher_hessian</servlet-name>
-        <url-pattern>/hessian/*</url-pattern>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 -->
 
-    <!--hession-->
+<!--
+    &lt;!&ndash;hession&ndash;&gt;
     <servlet>
         <servlet-name>userHessionExporter</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
@@ -34,7 +40,7 @@
         <url-pattern>/hessian/userService</url-pattern>
     </servlet-mapping>
 
-    <!--burlap-->
+    &lt;!&ndash;burlap&ndash;&gt;
     <servlet>
         <servlet-name>userBurlapExporter</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
@@ -45,7 +51,7 @@
         <url-pattern>/burlap/userService</url-pattern>
     </servlet-mapping>
 
-    <!--httpInvoker-->
+    &lt;!&ndash;httpInvoker&ndash;&gt;
     <servlet>
         <servlet-name>userHttpInvokerExporter</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
@@ -55,4 +61,6 @@
         <servlet-name>userHttpInvokerExporter</servlet-name>
         <url-pattern>/httpInvoker/userService</url-pattern>
     </servlet-mapping>
+-->
+
 </web-app>

@@ -12,6 +12,8 @@
 
     <import resource="applicationContext.d/dataSource.xml"/>
     <import resource="applicationContext.d/jpa_hibernate.xml"/>
+
     <import resource="applicationContext.d/remote-service.xml"/>
+    <import resource="applicationContext.d/jaxws-service.xml"/>
 
 </beans>
