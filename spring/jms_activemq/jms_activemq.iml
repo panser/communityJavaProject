@@ -4,9 +4,9 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.d/jms_activemq.xml</file>
-          <file>file://$MODULE_DIR$/../../test/jms_activemq/src/main/resources/activemq.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.d/springbyexample.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/test/jms_activemq/applicationContext.d/jms_activemq.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -16,8 +16,8 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

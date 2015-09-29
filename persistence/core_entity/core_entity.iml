@@ -4,6 +4,7 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/core_entity/applicationContext.d/beans.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/core_entity/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/ua/org/gostroy/communityJavaProject/core_entity/applicationContext.d/dataSource.xml</file>
         </fileset>
@@ -15,8 +16,8 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
