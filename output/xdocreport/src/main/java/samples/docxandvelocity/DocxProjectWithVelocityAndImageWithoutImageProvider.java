@@ -25,8 +25,7 @@ public class DocxProjectWithVelocityAndImageWithoutImageProvider
         {
             // 1) Load Docx file by filling Velocity template engine and cache
             // it to the registry
-            InputStream in =
-                DocxProjectWithVelocityAndImageWithoutImageProvider.class.getResourceAsStream( "DocxProjectWithVelocityAndImageWithoutImageProvider.docx" );
+            InputStream in = DocxProjectWithVelocityAndImageWithoutImageProvider.class.getResourceAsStream( "DocxProjectWithVelocityAndImageWithoutImageProvider.docx" );
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport( in, TemplateEngineKind.Velocity );
 
             // 2) Create fields metadata to manage image
