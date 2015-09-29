@@ -193,7 +193,7 @@ public class FromDocxApp
             context.put( "printOutModel", printOutModel );
 
             // 3) Generate report by merging Java model with the Docx
-            OutputStream out = new FileOutputStream( new File( "request_to_bank_Out.docx" ) );
+            OutputStream out = new FileOutputStream( new File( "output/xdocreport/src/main/resources/com/axa/request_to_bank_Out.docx" ) );
             report.process( context, out );
         }
         catch ( IOException e )

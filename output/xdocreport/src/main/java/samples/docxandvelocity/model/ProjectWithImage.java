@@ -205,7 +205,7 @@ public class ProjectWithImage extends Project
     @FieldMetadata( images = { @ImageMetadata( name = "logoFile" ) } )
     public File getLogoFile()
     {
-        return new File( "src/fr/opensagres/xdocreport/samples/docxandvelocity/logo.png" );
+        return new File( "samples/docxandvelocity/logo.png" );
     }
 
     @FieldMetadata( images = {
