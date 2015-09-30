@@ -55,6 +55,7 @@
         <module>test</module>
         <module>rmi</module>
         <module>output</module>
+        <module>javacore</module>
     </modules>
 
     <build>
