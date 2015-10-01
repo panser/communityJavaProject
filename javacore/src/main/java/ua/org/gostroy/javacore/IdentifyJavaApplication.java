@@ -17,6 +17,7 @@ public class IdentifyJavaApplication {
 
         String name1 = ManagementFactory.getRuntimeMXBean().getName();
         System.out.println(name1);
+        System.out.println(name1.split("@")[0]);
 
         try {
             RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
