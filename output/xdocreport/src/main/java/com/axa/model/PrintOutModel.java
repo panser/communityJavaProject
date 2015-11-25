@@ -6,7 +6,7 @@ package com.axa.model;
 public class PrintOutModel {
 
     String str1 = "Строка номер 1 ла ла ла ла ла ла .......................";
-    String str2 = "Строка номер 2";
+    String str2;
     String str3 = "Строка номер 3";
     String str4 = "Строка номер 4";
     String str5 = "Строка номер 5";

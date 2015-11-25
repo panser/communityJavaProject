@@ -170,6 +170,7 @@ package com.axa;
 import com.axa.model.PrintOutModel;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
+import fr.opensagres.xdocreport.document.docx.DocxReport;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
@@ -184,8 +185,15 @@ public class FromDocxApp
         try
         {
             // 1) Load Docx file by filling Velocity template engine and cache it to the registry
-            InputStream in = FromDocxApp.class.getResourceAsStream("request_to_bank.docx");
-            IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Velocity);
+
+//            InputStream in = FromDocxApp.class.getResourceAsStream("request_to_bank_VELOCITY.docx");
+//            IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Velocity);
+            InputStream in = FromDocxApp.class.getResourceAsStream("request_to_bank_FREEMARKER.docx");
+//            XDocReportRegistry.getRegistry().clear();
+            IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Freemarker);
+
+            IXDocReport report2 = new DocxReport();
+//            report2.setTemplateEngine(FreemarkerTemplateEngine.DESCRIPTION_DISCOVERY);
 
             // 2) Create context Java model
             IContext context = report.createContext();
