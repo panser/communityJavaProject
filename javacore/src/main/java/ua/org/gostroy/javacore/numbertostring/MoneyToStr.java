@@ -56,16 +56,14 @@ public class MoneyToStr {
     private final Language language;
     private final Pennies pennies;
 
-    static {
-        initXmlDoc();
-    }
-
-    public static void initXmlDoc() {
+    private void initXmlDoc() {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         try {
 //            InputStream is = ClassLoader.getSystemResourceAsStream(xmlFileName);
 //            byte[] bytes = IOUtils.toByteArray(is);
-            URL url = ClassLoader.getSystemResource(xmlFileName);
+
+//            URL url = ClassLoader.getSystemResource(xmlFileName);
+            URL url = this.getClass().getClassLoader().getResource(xmlFileName);
             byte[] bytesFromFile = Files.readAllBytes(Paths.get(url.toURI()));
 
             DocumentBuilder xmlDocBuilder = docFactory.newDocumentBuilder();
@@ -167,6 +165,8 @@ public class MoneyToStr {
         this.currency = currency;
         this.language = language;
         this.pennies = pennies;
+
+        initXmlDoc();
         String theISOstr = currency.name();
         Element languageElement = (Element)
                 (xmlDoc.getElementsByTagName(language.name())).item(0);
@@ -219,6 +219,8 @@ public class MoneyToStr {
         this.currency = currency;
         this.language = language;
         this.pennies = pennies;
+
+        initXmlDoc();
         Element languageElement = (Element)
                 (xmlDoc.getElementsByTagName(language.name())).item(0);
         NodeList items = languageElement.getElementsByTagName("item");
