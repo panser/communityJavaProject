@@ -63,6 +63,8 @@ public class MoneyToStr {
     public static void initXmlDoc() {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         try {
+//            InputStream is = ClassLoader.getSystemResourceAsStream(xmlFileName);
+//            byte[] bytes = IOUtils.toByteArray(is);
             URL url = ClassLoader.getSystemResource(xmlFileName);
             byte[] bytesFromFile = Files.readAllBytes(Paths.get(url.toURI()));
 
